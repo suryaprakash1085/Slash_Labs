@@ -1,0 +1,182 @@
+{
+  "company": {
+    "name": "TechVision",
+    "tagline": "Transforming Ideas Into Reality",
+    "description": "Leading digital innovation company delivering cutting-edge solutions for enterprise clients worldwide",
+    "year_founded": 2015,
+    "email": "hello@techvision.com",
+    "phone": "+1 (555) 123-4567",
+    "address": "123 Innovation Street, San Francisco, CA 94105"
+  },
+  "theme": {
+    "primaryColor": "#3B82F6",
+    "secondaryColor": "#8B5CF6",
+    "backgroundColor": "#0F172A",
+    "textColor": "#F8FAFC",
+    "accentColor": "#10B981",
+    "fontFamily": "Inter, sans-serif"
+  },
+  "navigation": [
+    { "label": "Home", "path": "/" },
+    { "label": "About", "path": "/about" },
+    { "label": "Services", "path": "/services" },
+    { "label": "Portfolio", "path": "/portfolio" },
+
+    { "label": "Contact", "path": "/contact" }
+  ],
+  "home": {
+    "hero": {
+      "title": "The Future of Digital Innovation",
+      "subtitle": "Cutting-edge solutions powered by AI and modern technology. Transform your business with our enterprise-grade platform.",
+      "cta_primary": "Get Started",
+      "cta_secondary": "Learn More",
+      "image": "https://images.unsplash.com/photo-1634365582032-c6bc9eaf5e4f?w=1200&h=600&fit=crop"
+    },
+    "features": [
+      {
+        "id": 1,
+        "title": "Lightning Fast",
+        "description": "Optimized performance with sub-100ms response times across all platforms",
+        "icon": "Zap"
+      },
+      {
+        "id": 2,
+        "title": "Secure & Reliable",
+        "description": "Enterprise-grade security with 99.99% uptime SLA guarantee",
+        "icon": "Shield"
+      },
+      {
+        "id": 3,
+        "title": "AI Powered",
+        "description": "Advanced machine learning algorithms to automate and optimize operations",
+        "icon": "Brain"
+      },
+      {
+        "id": 4,
+        "title": "Scalable",
+        "description": "Grows with your business from startup to enterprise scale",
+        "icon": "TrendingUp"
+      },
+      {
+        "id": 5,
+        "title": "24/7 Support",
+        "description": "Round-the-clock dedicated support team ready to assist",
+        "icon": "Headphones"
+      },
+      {
+        "id": 6,
+        "title": "Global Infrastructure",
+        "description": "Distributed servers across 5 continents for optimal performance",
+        "icon": "Globe"
+      }
+    ],
+    "testimonials": [
+      {
+        "id": 1,
+        "name": "Sarah Johnson",
+        "company": "TechCorp Inc",
+        "role": "CEO",
+        "text": "TechVision transformed our operations completely. The ROI was evident within the first month. Truly exceptional work!",
+        "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop"
+      },
+      {
+        "id": 2,
+        "name": "Michael Chen",
+        "company": "Innovation Labs",
+        "role": "CTO",
+        "text": "The platform's scalability and performance are unmatched. It handles our massive data loads effortlessly.",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop"
+      },
+      {
+        "id": 3,
+        "name": "Emily Rodriguez",
+        "company": "Digital Ventures",
+        "role": "Product Director",
+        "text": "Best investment we made this year. The team's expertise and responsiveness is phenomenal. Highly recommended!",
+        "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop"
+      }
+    ],
+    "cta_section": {
+      "title": "Ready to Transform Your Business?",
+      "description": "Join thousands of companies already using TechVision to drive growth and innovation",
+      "button_text": "Start Free Trial"
+    }
+  },
+  "services": [
+    {
+      "id": 1,
+      "title": "Cloud Solutions",
+      "description": "Enterprise cloud infrastructure with unmatched reliability and performance",
+      "icon": "Cloud"
+    },
+    {
+      "id": 2,
+      "title": "AI & Machine Learning",
+      "description": "Custom AI models and ML pipelines tailored to your specific needs",
+      "icon": "Cpu"
+    },
+    {
+      "id": 3,
+      "title": "Data Analytics",
+      "description": "Real-time analytics and insights to drive data-informed decisions",
+      "icon": "BarChart3"
+    },
+    {
+      "id": 4,
+      "title": "Cybersecurity",
+      "description": "Comprehensive security solutions protecting your digital assets",
+      "icon": "Lock"
+    },
+    {
+      "id": 5,
+      "title": "DevOps & Automation",
+      "description": "Streamline your development pipeline with modern DevOps practices",
+      "icon": "Settings"
+    },
+    {
+      "id": 6,
+      "title": "Consulting",
+      "description": "Expert guidance from industry veterans with decades of experience",
+      "icon": "Users"
+    }
+  ],
+  "pricing": [
+    {
+      "id": 1,
+      "name": "Starter",
+      "price": 299,
+      "period": "month",
+      "description": "Perfect for small teams and startups",
+      "features": ["Up to 10 users", "5GB storage", "Basic support", "Core features"]
+    },
+    {
+      "id": 2,
+      "name": "Professional",
+      "price": 999,
+      "period": "month",
+      "description": "For growing businesses",
+      "popular": true,
+      "features": ["Up to 50 users", "500GB storage", "Priority support", "Advanced analytics", "API access"]
+    },
+    {
+      "id": 3,
+      "name": "Enterprise",
+      "price": 4999,
+      "period": "month",
+      "description": "For large-scale operations",
+      "features": ["Unlimited users", "Unlimited storage", "24/7 dedicated support", "Custom integrations", "SLA guarantee"]
+    }
+  ],
+  "stats": [
+    { "label": "Active Clients", "value": "5,000+" },
+    { "label": "Global Reach", "value": "150+" },
+    { "label": "Team Members", "value": "500+" },
+    { "label": "Success Rate", "value": "99.99%" }
+  ],
+  "socialLinks": [
+    { "platform": "twitter", "url": "https://twitter.com" },
+    { "platform": "linkedin", "url": "https://linkedin.com" },
+    { "platform": "github", "url": "https://github.com" },
+    { "platform": "facebook", "url": "https://facebook.com" }
+  ]
+}
