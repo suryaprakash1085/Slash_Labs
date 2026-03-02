@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useDarkMode } from '@/hooks/use-dark-mode';
+import { useSettingsContext } from '@/contexts/SettingsContext';
 
 interface NavItem {
   label: string;
@@ -15,31 +16,47 @@ interface HeaderProps {
 
 export const Header = ({ companyName = 'TechVision', navigation = [] }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [config, setConfig] = useState<any>(null);
   const { isDark, toggleDarkMode } = useDarkMode();
+  const { settings, loading } = useSettingsContext();
 
-  useEffect(() => {
-    fetch('/config.json')
-      .then(res => res.json())
-      .then(data => {
-        setConfig(data);
-      })
-      .catch(err => console.error('Failed to load config:', err));
-  }, []);
+  const company = settings?.global?.company_name || companyName;
+  const logo = settings?.global?.company_logo;
+  const primaryColor = settings?.global?.primary_color || '#1e4a94';
 
-  const navItems = navigation.length > 0 ? navigation : config?.navigation || [];
+  const navItems = navigation.length > 0 ? navigation : [
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Services', path: '/services' },
+    { label: 'Portfolio', path: '/portfolio' },
+    // { label: 'Pricing', path: '/pricing' },
+    // { label: 'Blog', path: '/blog' },
+    // { label: 'Careers', path: '/careers' },
+    { label: 'Contact', path: '/contact' },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Company Name */}
-          <Link 
-            to="/" 
-            className="flex items-center gap-2 font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent transition-all hover:scale-105"
+          <Link
+            to="/"
+            className="flex items-center gap-2 font-bold text-xl transition-all hover:scale-105"
+            style={{ color: primaryColor }}
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600" />
-            {companyName}
+            {logo ? (
+              <img
+                src={`${import.meta.env.VITE_PUBLIC_API_BASE_URL}${logo}`}
+                alt={company}
+                className="w-8 h-8 object-contain rounded-lg"
+              />
+            ) : (
+              <div
+                className="w-8 h-8 rounded-lg"
+                style={{ backgroundColor: primaryColor }}
+              />
+            )}
+            {company}
           </Link>
 
           {/* Desktop Navigation */}

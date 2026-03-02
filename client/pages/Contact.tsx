@@ -280,58 +280,7 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-20 sm:py-28 bg-white dark:bg-slate-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {[
-                {
-                  question: "What's the typical response time?",
-                  answer: "We aim to respond to all inquiries within 24 business hours during office hours."
-                },
-                {
-                  question: "Do you offer consulting services?",
-                  answer: "Yes! We provide free initial consultations to understand your needs and recommend solutions."
-                },
-                {
-                  question: "How can I schedule a demo?",
-                  answer: "You can request a demo through this contact form or call us directly at our phone number."
-                },
-                {
-                  question: "What's your service area?",
-                  answer: "We serve clients globally. Our team operates across multiple time zones to support you."
-                },
-                {
-                  question: "Do you offer support in multiple languages?",
-                  answer: "Yes, our team provides support in English, Spanish, French, and German."
-                }
-              ].map((faq, index) => (
-                <details
-                  key={index}
-                  className="group p-6 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:shadow-md transition-all duration-300"
-                >
-                  <summary className="flex items-center justify-between font-semibold text-slate-900 dark:text-white">
-                    {faq.question}
-                    <span className="group-open:rotate-180 transition-transform duration-300">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                  </summary>
-                  <p className="mt-4 text-slate-600 dark:text-slate-400">
-                    {faq.answer}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+     
       </main>
 
       <Footer />

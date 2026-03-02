@@ -1,20 +1,28 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Facebook } from 'lucide-react';
+import { useSettingsContext } from '@/contexts/SettingsContext';
 
 export const Footer = () => {
-  const [config, setConfig] = useState<any>(null);
+  const { settings } = useSettingsContext();
+  const globalSettings = settings?.global || {};
 
-  useEffect(() => {
-    fetch('/config.json')
-      .then(res => res.json())
-      .then(data => setConfig(data))
-      .catch(err => console.error('Failed to load config:', err));
-  }, []);
+  const companyName = globalSettings.company_name || 'TechVision';
+  const companyEmail = globalSettings.company_email || 'info@techvision.com';
+  const companyPhone = globalSettings.company_phone || '+1 (555) 000-0000';
+  const companyAddress = globalSettings.company_address || 'Address not available';
+  const footerText = globalSettings.footer_text || '';
+  const logo = globalSettings.company_logo;
 
-  if (!config) return null;
-
-  const { company, navigation, socialLinks } = config;
+  const navItems = [
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Services', path: '/services' },
+    { label: 'Portfolio', path: '/portfolio' },
+    // { label: 'Pricing', path: '/pricing' },
+    // { label: 'Blog', path: '/blog' },
+    // { label: 'Careers', path: '/careers' },
+    { label: 'Contact', path: '/contact' },
+  ];
 
   const getSocialIcon = (platform: string) => {
     switch (platform) {
@@ -31,6 +39,14 @@ export const Footer = () => {
     }
   };
 
+  const socialLinks = [];
+  if (globalSettings.social_facebook) {
+    socialLinks.push({ platform: 'facebook', url: globalSettings.social_facebook });
+  }
+  if (globalSettings.social_twitter) {
+    socialLinks.push({ platform: 'twitter', url: globalSettings.social_twitter });
+  }
+
   return (
     <footer className="bg-slate-900 dark:bg-black text-slate-100 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,33 +55,45 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600" />
-              <h3 className="font-bold text-lg">{company.name}</h3>
+              {logo ? (
+                <img
+                  src={`${import.meta.env.VITE_PUBLIC_API_BASE_URL}${logo}`}
+                  alt={companyName}
+                  className="w-8 h-8 object-contain rounded-lg"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600" />
+              )}
+              <h3 className="font-bold text-lg">{companyName}</h3>
             </div>
-            <p className="text-sm text-slate-400">{company.description}</p>
-            
+            {footerText && (
+              <p className="text-sm text-slate-400">{footerText}</p>
+            )}
+
             {/* Social Links */}
-            <div className="flex gap-3 pt-4">
-              {socialLinks.map((link: any) => (
-                <a
-                  key={link.platform}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-slate-800 hover:bg-blue-600 transition-colors duration-200"
-                  aria-label={link.platform}
-                >
-                  {getSocialIcon(link.platform)}
-                </a>
-              ))}
-            </div>
+            {socialLinks.length > 0 && (
+              <div className="flex gap-3 pt-4">
+                {socialLinks.map((link: any) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-slate-800 hover:bg-blue-600 transition-colors duration-200"
+                    aria-label={link.platform}
+                  >
+                    {getSocialIcon(link.platform)}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="font-semibold mb-4 text-white">Navigation</h4>
             <ul className="space-y-2">
-              {navigation.slice(0, 4).map((item: any) => (
+              {navItems.slice(0, 4).map((item: any) => (
                 <li key={item.path}>
                   <Link
                     to={item.path}
@@ -82,7 +110,7 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 text-white">Company</h4>
             <ul className="space-y-2">
-              {navigation.slice(4, 8).map((item: any) => (
+              {navItems.slice(4, 8).map((item: any) => (
                 <li key={item.path}>
                   <Link
                     to={item.path}
@@ -98,31 +126,37 @@ export const Footer = () => {
           {/* Contact Info */}
           <div className="space-y-3">
             <h4 className="font-semibold mb-4 text-white">Contact</h4>
-            <a
-              href={`mailto:${company.email}`}
-              className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200"
-            >
-              <Mail className="w-4 h-4" />
-              {company.email}
-            </a>
-            <a
-              href={`tel:${company.phone}`}
-              className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200"
-            >
-              <Phone className="w-4 h-4" />
-              {company.phone}
-            </a>
-            <div className="flex items-start gap-2 text-sm text-slate-400">
-              <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-              <span>{company.address}</span>
-            </div>
+            {companyEmail && (
+              <a
+                href={`mailto:${companyEmail}`}
+                className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200"
+              >
+                <Mail className="w-4 h-4" />
+                {companyEmail}
+              </a>
+            )}
+            {companyPhone && (
+              <a
+                href={`tel:${companyPhone}`}
+                className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200"
+              >
+                <Phone className="w-4 h-4" />
+                {companyPhone}
+              </a>
+            )}
+            {companyAddress && (
+              <div className="flex items-start gap-2 text-sm text-slate-400">
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                <span>{companyAddress}</span>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-slate-400">
-            © {new Date().getFullYear()} {company.name}. All rights reserved.
+            © {new Date().getFullYear()} {companyName}. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-slate-400">
             <a href="#" className="hover:text-white transition-colors duration-200">Privacy Policy</a>

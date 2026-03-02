@@ -99,6 +99,11 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* API-driven theme colors (set by ThemeApplier component) */
+    --primary-color: #1e4a94;
+    --secondary-color: #53548d;
+    --text-color: #1f4db7;
   }
 
   .dark {
