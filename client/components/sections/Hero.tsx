@@ -7,6 +7,8 @@ interface HeroProps {
   cta_primary: string;
   cta_secondary: string;
   image?: string;
+  badge_text?: string;
+  stats?: string;
 }
 
 export const Hero = ({ 
@@ -14,6 +16,8 @@ export const Hero = ({
   subtitle, 
   cta_primary, 
   cta_secondary,
+  badge_text,
+  stats,
   image 
 }: HeroProps) => {
   return (
@@ -31,7 +35,7 @@ export const Hero = ({
           <div className="space-y-6 sm:space-y-8 z-10">
             <div className="inline-block">
               <span className="px-4 py-2 rounded-full text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-100/50 dark:bg-blue-900/30 backdrop-blur-sm border border-blue-200/50 dark:border-blue-800/50">
-                ✨ Welcome to the Future
+                {badge_text}
               </span>
             </div>
 

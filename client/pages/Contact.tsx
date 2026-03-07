@@ -8,7 +8,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    company: '',
+    // phone: '',
     subject: '',
     message: ''
   });
@@ -29,16 +29,37 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real application, this would send data to a backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', company: '', subject: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
-  };
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+ const response = await fetch(`${import.meta.env.VITE_PUBLIC_API_BASE_URL}/api/messages`, {
+    method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
+      setSubmitted(true);
+
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          // phone: '',
+          subject: '',
+          message: ''
+        });
+        setSubmitted(false);
+      }, 3000);
+    }
+
+  } catch (error) {
+    console.error('Error sending message:', error);
+  }
+};
 
   if (!config) {
     return (
@@ -191,20 +212,20 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
-                      Company Name
+                  {/* <div>
+                    <label htmlFor="phone" className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+                      Phone Number 
                     </label>
                     <input
                       type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all duration-300"
-                      placeholder="Your Company"
+                      placeholder="Your Phone Number"
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">

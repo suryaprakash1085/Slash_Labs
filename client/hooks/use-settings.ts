@@ -13,10 +13,11 @@ export const useSettings = () => {
       global: {},
       home: {},
       about: {},
+      services: {},
     };
 
     data.forEach((item) => {
-      const page = item.page_name || 'global';
+      const page = (item.page_name || "global").toLowerCase();
       if (!parsed[page]) {
         parsed[page] = {};
       }

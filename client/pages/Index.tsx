@@ -36,7 +36,7 @@ export default function Index() {
   const hero = typeof homeData.hero === 'string' ? JSON.parse(homeData.hero) : homeData.hero;
   const features = typeof homeData.features === 'string' ? JSON.parse(homeData.features) : homeData.features;
   const ctaSection = typeof homeData.cta_section === 'string' ? JSON.parse(homeData.cta_section) : homeData.cta_section;
-  const homeStats = typeof homeData.home_stats === 'string' ? JSON.parse(homeData.home_stats) : homeData.home_stats;
+  const stats = typeof homeData.stats === 'string' ? JSON.parse(homeData.stats) : homeData.stats;
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300">
@@ -51,6 +51,9 @@ export default function Index() {
             cta_primary={hero.cta_primary}
             cta_secondary={hero.cta_secondary}
             image={hero.image}
+            badge_text={hero.badge_text}
+            stats={stats}
+            
           />
         )}
 
@@ -60,7 +63,7 @@ export default function Index() {
         )}
 
         {/* Testimonials Section */}
-        <Testimonials testimonials={[]} />
+        {/* <Testimonials testimonials={[]} /> */}
 
         {/* CTA Section */}
         {ctaSection && (
