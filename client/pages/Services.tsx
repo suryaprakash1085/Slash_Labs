@@ -4,10 +4,10 @@ import { Footer } from '@/components/Footer';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import * as LucideIcons from 'lucide-react';
-
+import { useSettingsContext } from '@/contexts/SettingsContext';
 export default function Services() {
   const [config, setConfig] = useState<any>(null);
-
+const { settings, loading } = useSettingsContext();
   useEffect(() => {
     fetch('/config.json')
       .then(res => res.json())
